@@ -6,6 +6,48 @@
 	(paper "A4")
 	(lib_symbols)
 	(sheet
+		(at 73.66 97.79)
+		(size 12.7 13.97)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "12f1505f-4685-4c57-8990-25b6ecd3e17e")
+		(property "Sheetname" "Logic"
+			(at 73.66 97.0784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "logic.kicad_sch"
+			(at 73.66 112.3446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "KVM-Control"
+				(path "/ffa57959-0cb1-434b-ad03-c55af2413b19"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 52.07 38.1)
 		(size 12.7 11.43)
 		(exclude_from_sim no)
@@ -86,6 +128,48 @@
 			(project "KVM-Control"
 				(path "/ffa57959-0cb1-434b-ad03-c55af2413b19"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 91.44 60.96)
+		(size 12.7 10.16)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "88d3285b-b0da-486e-8ad9-02fe02cc7648")
+		(property "Sheetname" "Power Management"
+			(at 91.44 60.2484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 91.44 71.7046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "KVM-Control"
+				(path "/ffa57959-0cb1-434b-ad03-c55af2413b19"
+					(page "4")
 				)
 			)
 		)

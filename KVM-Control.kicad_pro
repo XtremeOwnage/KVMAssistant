@@ -623,6 +623,14 @@
     [
       "39926f1d-4113-41f7-bd06-ac738b73241a",
       "ESP32_Logic"
+    ],
+    [
+      "88d3285b-b0da-486e-8ad9-02fe02cc7648",
+      "Power Management"
+    ],
+    [
+      "12f1505f-4685-4c57-8990-25b6ecd3e17e",
+      "Logic"
     ]
   ],
   "text_variables": {}

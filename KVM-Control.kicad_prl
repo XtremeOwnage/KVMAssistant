@@ -53,9 +53,9 @@
     "zone_display_mode": 0
   },
   "git": {
-    "repo_type": "",
+    "repo_type": "https",
     "repo_username": "",
-    "ssh_key": ""
+    "ssh_key": "C:\\Users\\Eric\\.ssh\\id_rsa"
   },
   "meta": {
     "filename": "KVM-Control.kicad_prl",
