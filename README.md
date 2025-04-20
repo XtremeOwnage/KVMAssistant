@@ -23,4 +23,3 @@ Parts were ordered a few weeks ago, pending arrival.
 Schematic
 
 ![alt text](images/schematic.png)
-
