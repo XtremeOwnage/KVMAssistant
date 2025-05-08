@@ -1,11 +1,6 @@
 substitutions:
   devicename: "desk_kvm"
   friendly_name: "KVM Assistant"
-  pc_1: Kube01
-  pc_2: Kube05
-  pc_3: Kube06
-  pc_4: Kube04
-
 
 packages:
   common: !include common/package-common.yaml
@@ -81,16 +76,24 @@ switch:
     - delay: 1000ms
     - switch.turn_off: kvm3_output
 
-  # Home Assistant Visible
+ # Home Assistant Visible
   - platform: template
     name: "KVM 1"
     id: kvm1_combined
     lambda: |-
       return id(kvm1_state).state;
     turn_on_action:
-      - switch.turn_on: kvm1_output
+      - if:
+          condition:
+            binary_sensor.is_off: kvm1_state
+          then:
+            - switch.turn_on: kvm1_output
     turn_off_action:
-      - switch.turn_on: kvm1_output
+      - if:
+          condition:
+            binary_sensor.is_on: kvm1_state
+          then:
+            - switch.turn_on: kvm1_output
 
   - platform: template
     name: "KVM 2"
@@ -98,9 +101,17 @@ switch:
     lambda: |-
       return id(kvm2_state).state;
     turn_on_action:
-      - switch.turn_on: kvm2_output
+      - if:
+          condition:
+            binary_sensor.is_off: kvm2_state
+          then:
+            - switch.turn_on: kvm2_output
     turn_off_action:
-      - switch.turn_on: kvm2_output
+      - if:
+          condition:
+            binary_sensor.is_on: kvm2_state
+          then:
+            - switch.turn_on: kvm2_output
 
   - platform: template
     name: "KVM 3"
@@ -108,6 +119,14 @@ switch:
     lambda: |-
       return id(kvm3_state).state;
     turn_on_action:
-      - switch.turn_on: kvm3_output
+      - if:
+          condition:
+            binary_sensor.is_off: kvm3_state
+          then:
+            - switch.turn_on: kvm3_output
     turn_off_action:
-      - switch.turn_on: kvm3_output
+      - if:
+          condition:
+            binary_sensor.is_on: kvm3_state
+          then:
+            - switch.turn_on: kvm3_output
