@@ -1,0 +1,122 @@
+substitutions:
+  devicename: "desk_kvm"
+  friendly_name: "KVM Assistant"
+  pc_1: Kube01
+  pc_2: Kube05
+  pc_3: Kube06
+  pc_4: Kube04
+
+
+packages:
+  common: !include common/package-common.yaml
+
+esp32:
+  board: esp32-s3-devkitc-1
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO17
+      mode:
+        input: true
+        pulldown: true
+    internal: true
+    name: kvm1_state
+    id: kvm1_state
+
+  - platform: gpio
+    pin:
+      number: GPIO18
+      mode:
+        input: true
+        pulldown: true
+    internal: true
+    name: kvm2_state
+    id: kvm2_state
+
+  # - platform: gpio
+  #   pin: 
+  #     number: GPIO21
+  #     mode:
+  #       input: true
+  #       #pulldown: true
+  #   name: kvm3_state
+  #   id: kvm3_state
+
+  # - platform: gpio
+  #   pin: 
+  #     number: GPIO35
+  #     mode:
+  #       input: true
+  #       #pulldown: true
+  #   name: kvm4_state
+  #   id: kvm4_state
+switch:
+  - platform: gpio
+    pin: GPIO36
+    id: kvm1_output
+    on_turn_on:
+    - delay: 1000ms
+    - switch.turn_off: kvm1_output
+
+  # - platform: gpio
+  #   pin: GPIO37
+  #   id: kvm2_output
+  #   on_turn_on:
+  #   - delay: 1000ms
+  #   - switch.turn_off: kvm2_output
+
+  # - platform: gpio
+  #   pin: GPIO38
+  #   id: kvm3_output
+  #   on_turn_on:
+  #   - delay: 1000ms
+  #   - switch.turn_off: kvm3_output
+
+  # - platform: gpio
+  #   pin: GPIO45
+  #   id: kvm4_output
+  #   on_turn_on:
+  #   - delay: 1000ms
+  #   - switch.turn_off: kvm4_output
+
+  # Home Assistant Visible
+  - platform: template
+    name: "KVM 1"
+    id: kvm1_combined
+    lambda: |-
+      return id(kvm1_state).state;
+    turn_on_action:
+      - switch.turn_on: kvm1_output
+    turn_off_action:
+      - switch.turn_on: kvm1_output
+
+  # - platform: template
+  #   name: "KVM 2"
+  #   id: kvm2_combined
+  #   lambda: |-
+  #     return id(kvm2_state).state;
+  #   turn_on_action:
+  #     - switch.turn_on: kvm2_output
+  #   turn_off_action:
+  #     - switch.turn_on: kvm2_output
+
+  # - platform: template
+  #   name: "KVM 3"
+  #   id: kvm3_combined
+  #   lambda: |-
+  #     return id(kvm3_state).state;
+  #   turn_on_action:
+  #     - switch.turn_on: kvm3_output
+  #   turn_off_action:
+  #     - switch.turn_on: kvm3_output
+
+  # - platform: template
+  #   name: "KVM 4"
+  #   id: kvm4_combined
+  #   lambda: |-
+  #     return id(kvm4_state).state;
+  #   turn_on_action:
+  #     - switch.turn_on: kvm4_output
+  #   turn_off_action:
+  #     - switch.turn_on: kvm4_output

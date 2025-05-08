@@ -18,8 +18,12 @@ Initial schematic design completed. Not perfect, but, good enough to send in an 
 
 Parts were ordered a few weeks ago, pending arrival.
 
-![alt text](images/3d-rendor.png)
+![alt text](images/v2.0/rendor.png)
 
 Schematic
 
-![alt text](images/schematic.png)
+![alt text](images/v2.0/schematic.png)
+
+Assembled
+
+![alt text](images/v2.0/assembled.png)

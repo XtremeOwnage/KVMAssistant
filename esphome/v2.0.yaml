@@ -1,0 +1,132 @@
+substitutions:
+  devicename: "desk_kvm"
+  friendly_name: "KVM Assistant"
+
+packages:
+  common: !include common/package-common.yaml
+
+esp32:
+  board: nodemcu-32s
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO19
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: kvm1_state
+    id: kvm1_state
+
+  - platform: gpio
+    pin:
+      number: GPIO18
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: kvm2_state
+    id: kvm2_state
+
+  - platform: gpio
+    pin: 
+      number: GPIO25
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: kvm3_state
+    id: kvm3_state
+
+switch:
+  - platform: gpio
+    pin: GPIO17
+    id: led_enable_output
+    restore_mode: RESTORE_DEFAULT_OFF
+    name: Enable LEDs
+
+  - platform: gpio
+    pin: GPIO13
+    id: aux_led_output
+    restore_mode: RESTORE_DEFAULT_OFF
+    name: Aux LED
+
+  - platform: gpio
+    pin: GPIO23
+    id: kvm1_output
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+    - delay: 1000ms
+    - switch.turn_off: kvm1_output
+
+  - platform: gpio
+    pin: GPIO33
+    id: kvm2_output    
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+    - delay: 1000ms
+    - switch.turn_off: kvm2_output
+
+  - platform: gpio
+    pin: GPIO32
+    id: kvm3_output
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+    - delay: 1000ms
+    - switch.turn_off: kvm3_output
+
+ # Home Assistant Visible
+  - platform: template
+    name: "KVM 1"
+    id: kvm1_combined
+    lambda: |-
+      return id(kvm1_state).state;
+    turn_on_action:
+      - if:
+          condition:
+            binary_sensor.is_off: kvm1_state
+          then:
+            - switch.turn_on: kvm1_output
+    turn_off_action:
+      - if:
+          condition:
+            binary_sensor.is_on: kvm1_state
+          then:
+            - switch.turn_on: kvm1_output
+
+  - platform: template
+    name: "KVM 2"
+    id: kvm2_combined
+    lambda: |-
+      return id(kvm2_state).state;
+    turn_on_action:
+      - if:
+          condition:
+            binary_sensor.is_off: kvm2_state
+          then:
+            - switch.turn_on: kvm2_output
+    turn_off_action:
+      - if:
+          condition:
+            binary_sensor.is_on: kvm2_state
+          then:
+            - switch.turn_on: kvm2_output
+
+  - platform: template
+    name: "KVM 3"
+    id: kvm3_combined
+    lambda: |-
+      return id(kvm3_state).state;
+    turn_on_action:
+      - if:
+          condition:
+            binary_sensor.is_off: kvm3_state
+          then:
+            - switch.turn_on: kvm3_output
+    turn_off_action:
+      - if:
+          condition:
+            binary_sensor.is_on: kvm3_state
+          then:
+            - switch.turn_on: kvm3_output
